@@ -3,6 +3,11 @@ package com.toddmahoney.xenomorpher.views;
 import com.badlogic.gdx.Screen;
 
 public class LoadingScreen implements Screen {
+
+    public LoadingScreen() {
+        System.out.println("Loading Screen");
+    }
+
     @Override
     public void show() {
 
