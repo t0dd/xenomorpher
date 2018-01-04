@@ -1,10 +1,14 @@
 package com.toddmahoney.xenomorpher.views;
 
 import com.badlogic.gdx.Screen;
+import com.toddmahoney.xenomorpher.Xenomorpher;
 
 public class LoadingScreen implements Screen {
 
-    public LoadingScreen() {
+    private Xenomorpher parent;
+
+    public LoadingScreen(Xenomorpher game) {
+        parent = game;
         System.out.println("Loading Screen");
     }
 
@@ -15,7 +19,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
+        parent.changeScreen(Xenomorpher.MENU);
     }
 
     @Override

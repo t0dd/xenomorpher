@@ -23,19 +23,19 @@ public class Xenomorpher extends Game {
 	public void changeScreen(int screen) {
 		switch(screen){
 			case MENU:
-				if(menuScreen == null) menuScreen = new MenuScreen();
+				if(menuScreen == null) menuScreen = new MenuScreen(this);
 					this.setScreen(menuScreen);
 				break;
 			case PREFERENCES:
-				if(preferencesScreen == null) preferencesScreen = new PreferencesScreen();
+				if(preferencesScreen == null) preferencesScreen = new PreferencesScreen(this);
 					this.setScreen(preferencesScreen );
 				break;
 			case APPLICATION:
-				if(mainScreen == null) mainScreen = new MainScreen();
+				if(mainScreen == null) mainScreen = new MainScreen(this);
 					this.setScreen(mainScreen);
 				break;
 			case ENDGAME:
-				if(endScreen == null) endScreen = new EndScreen();
+				if(endScreen == null) endScreen = new EndScreen(this);
 					this.setScreen(endScreen);
 				break;
 		}
@@ -43,7 +43,7 @@ public class Xenomorpher extends Game {
 
 	@Override
 	public void create() {
-		loadingScreen = new LoadingScreen();
+		loadingScreen = new LoadingScreen(this);
 		setScreen(loadingScreen);
 	}
 }

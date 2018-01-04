@@ -1,8 +1,12 @@
 package com.toddmahoney.xenomorpher.views;
 
 import com.badlogic.gdx.Screen;
+import com.toddmahoney.xenomorpher.Xenomorpher;
 
 public class PreferencesScreen implements Screen {
+    public PreferencesScreen(Xenomorpher xenomorpher) {
+    }
+
     @Override
     public void show() {
 
