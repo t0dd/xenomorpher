@@ -21,20 +21,23 @@ public class MenuScreen implements Screen {
         parent = xenomorpher;
         stage = new Stage(new ScreenViewport());
         //this tells the screen to send any input from the user to the stage so it can respond
-        Gdx.input.setInputProcessor(stage);
+
     }
 
     @Override
     public void show() {
-        //create a table that fills the screen
-        //everything else will go inside this table
+
+        stage.clear();
+        Gdx.input.setInputProcessor(stage);
+        //table
         Table table = new Table();
         table.setFillParent(true);
         table.setDebug(true);
         stage.addActor(table);
 
-        //Create buttons
         Skin skin = new Skin(Gdx.files.internal("skin/quantum-horizon-ui.json"));
+
+        //Create buttons
         TextButton newGame = new TextButton("NEW GAME", skin);
         TextButton preferences = new TextButton("PREFERENCES", skin);
         TextButton exit = new TextButton("EXIT", skin);

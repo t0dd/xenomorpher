@@ -19,6 +19,7 @@ public class Xenomorpher extends Game {
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
+	private AppPreferences preferences;
 
 	public void changeScreen(int screen) {
 		switch(screen){
@@ -45,5 +46,10 @@ public class Xenomorpher extends Game {
 	public void create() {
 		loadingScreen = new LoadingScreen(this);
 		setScreen(loadingScreen);
+		preferences = new AppPreferences();
+	}
+
+	public AppPreferences getPreferences() {
+		return this.preferences;
 	}
 }
