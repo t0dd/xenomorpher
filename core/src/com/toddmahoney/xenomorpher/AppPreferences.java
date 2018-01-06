@@ -1,7 +1,6 @@
 package com.toddmahoney.xenomorpher;
 
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.Preferences;
 
 public class AppPreferences {
