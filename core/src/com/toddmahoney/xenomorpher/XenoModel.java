@@ -10,4 +10,11 @@ public class XenoModel {
     public XenoModel() {
         world = new World(new Vector2(0, -10f), true);
     }
+
+    //game logic
+    public void logicStep(float delta) {
+
+        //tells Box2D world to move forward in time
+        world.step(delta, 3, 3);
+    }
 }
