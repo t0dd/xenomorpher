@@ -15,7 +15,6 @@ public class MainScreen implements Screen {
     private Box2DDebugRenderer debugRenderer;
 
 
-
     public MainScreen(Xenomorpher xenomorpher) {
         model = new XenoModel();
         cam = new OrthographicCamera(32, 24);
