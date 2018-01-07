@@ -3,6 +3,7 @@ package com.toddmahoney.xenomorpher;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class XenoModel {
 
@@ -16,6 +17,18 @@ public class XenoModel {
         createFloor();
         createObject();
         createMovingObject();
+
+        // create BodyFactory singleton and store it in bodyFactory
+        BodyFactory bodyFactory = BodyFactory.getInstance(world);
+
+        // add a new rubber ball at position 1, 1
+        bodyFactory.makeCirclePolyBody(1, 1, 2, BodyFactory.RUBBER, BodyType.DynamicBody,false);
+
+        // add a new steel ball at position 4, 1
+        bodyFactory.makeCirclePolyBody(4, 1, 2, BodyFactory.STEEL, BodyType.DynamicBody,false);
+
+        // add a new stone at position -4,1
+        bodyFactory.makeCirclePolyBody(-4, 1, 2, BodyFactory.STONE, BodyType.DynamicBody,false);
     }
 
     //game logic
@@ -29,7 +42,7 @@ public class XenoModel {
 
         //create a new Box2D body
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.type = BodyType.DynamicBody;
         bodyDef.position.set(0,0);
 
         // add it to the world
@@ -57,7 +70,7 @@ public class XenoModel {
 
         // create a new body definition (type and location)
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.type = BodyType.StaticBody;
         bodyDef.position.set(0, -10);
 
         // add it to the world
@@ -79,7 +92,7 @@ public class XenoModel {
 
         //create a new body definition (type and location)
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.type = BodyType.KinematicBody;
         bodyDef.position.set(0,-12);
 
 
