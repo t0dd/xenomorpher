@@ -34,6 +34,12 @@ public class BodyFactory {
         return thisInstance;
     }
 
+    public void makeAllFixturesSensors(Body bod){
+        for(Fixture fix :bod.getFixtureList()){
+            fix.setSensor(true);
+        }
+    }
+
     public void makeConeSensor(Body body, float size){
 
         FixtureDef fixtureDef = new FixtureDef();

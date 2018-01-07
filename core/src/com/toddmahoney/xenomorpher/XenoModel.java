@@ -1,25 +1,48 @@
 package com.toddmahoney.xenomorpher;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 
 public class XenoModel {
 
+    public boolean isSwimming = false;
     public World world;
+    public Body player;
+
+
     private Body bodyd; //Box2D Dynamic body
     private Body bodys; //Box2D Static body
     private Body bodyk; //Box2D Kinematic body
 
+
     public XenoModel() {
+
         world = new World(new Vector2(0, -10f), true);
+        world.setContactListener(new XenoContactListener(this));
         createFloor();
-        createObject();
-        createMovingObject();
+        //createObject();
+        //createMovingObject();
 
         // create BodyFactory singleton and store it in bodyFactory
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
+
+        // add a player
+        player = bodyFactory.makeBoxPolyBody(1, 1, 2, 2, BodyFactory.RUBBER, BodyType.DynamicBody,false);
+
+        // add some water
+        Body water =  bodyFactory.makeBoxPolyBody(1, -8, 40, 4, BodyFactory.RUBBER, BodyType.StaticBody,false);
+        water.setUserData("IAMTHESEA");
+
+        // make the water a sensor so it doesn't obstruct our player
+        bodyFactory.makeAllFixturesSensors(water);
 
         // add a new rubber ball at position 1, 1
         bodyFactory.makeCirclePolyBody(1, 1, 2, BodyFactory.RUBBER, BodyType.DynamicBody,false);
@@ -33,7 +56,9 @@ public class XenoModel {
 
     //game logic
     public void logicStep(float delta) {
-
+        if(isSwimming){
+            player.applyForceToCenter(0, 50, true);
+        }
         //tells Box2D world to move forward in time
         world.step(delta, 3, 3);
     }
